@@ -10,18 +10,19 @@ const PORT = process.env.PORT || 5000
 
 dotenv.config();
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// Use CORS with specific origin
+const corsOptions = {
+    origin: "https://school-manag-sys-front-end.vercel.app", // replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['x-access-token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept']
+};
+
+app.use(cors(corsOptions));
 
 // app.use(bodyParser.json({ limit: '10mb', extended: true }))
 // app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
 app.use(express.json({ limit: '10mb' }))
-app.use(cors())
 
 // Default route for testing
 app.get('/', (req, res) => {
