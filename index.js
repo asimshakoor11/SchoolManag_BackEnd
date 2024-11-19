@@ -10,14 +10,20 @@ const PORT = process.env.PORT || 5000
 
 dotenv.config();
 
-// Use CORS with specific origin
-const corsOptions = {
-    origin: "https://school-manag-sys-front-end.vercel.app", // replace with your frontend URL
+// Use dynamic CORS origin
+const allowedOrigins = ["https://school-manag-sys-front-end.vercel.app"];
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    allowedHeaders: ['x-access-token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept']
-};
-
-app.use(cors(corsOptions));
+    allowedHeaders: ['x-access-token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+    credentials: true
+}));
 
 // app.use(bodyParser.json({ limit: '10mb', extended: true }))
 // app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
