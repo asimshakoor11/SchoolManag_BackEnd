@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000
 dotenv.config();
 
 // Use dynamic CORS origin
-const allowedOrigins = ["https://school-manag-sys-front-end.vercel.app"];
+const allowedOrigins = ["https://school-manag-sys-front-end.vercel.app", "http://localhost:3000"];
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
