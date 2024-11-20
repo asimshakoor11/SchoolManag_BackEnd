@@ -1,14 +1,10 @@
 {
-   "headers": [
-     {
-       "source": "/(.*)",
-       "headers": [
-         { "key": "Access-Control-Allow-Origin", "value": "https://school-manag-sys-front-end.vercel.app" },
-         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
-         { "key": "Access-Control-Allow-Headers", "value": "x-access-token, Origin, X-Requested-With, Content-Type, Accept" },
-         { "key": "Access-Control-Allow-Credentials", "value": "true" }
-       ]
-     }
-   ]
+    "version": 2,
+    "name": "music-album",
+    "builds": [
+       { "src": "index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/index.js" }
+    ]
  }
- 
