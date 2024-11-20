@@ -2,13 +2,14 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
+dotenv.config();
 // const bodyParser = require("body-parser")
 const app = express()
 const Routes = require("./routes/route.js")
 
 const PORT = process.env.PORT || 5000
 
-dotenv.config();
+console.log("MONGO_URL:", process.env.MONGO_URL);  // Temporary check
 
 // Use dynamic CORS origin
 const allowedOrigins = ["https://school-manag-sys-front-end.vercel.app", "http://localhost:3000"];
